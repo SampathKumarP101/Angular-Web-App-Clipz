@@ -14,6 +14,7 @@
     "@angular/common": "~12.0.3",
     "@angular/compiler": "~12.0.3",
     "@angular/core": "~12.0.3",
+    "@angular/fire": "^7.5.0",
     "@angular/forms": "~12.0.3",
     "@angular/platform-browser": "~12.0.3",
     "@angular/platform-browser-dynamic": "~12.0.3",
@@ -38,6 +39,6 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
     "tailwindcss": "^2.2.19",
-    "typescript": "~4.2.3"
+    "typescript": "^4.2.4"
   }
 }

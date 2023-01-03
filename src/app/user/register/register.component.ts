@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import IUser from 'src/app/models/user.model';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -7,6 +11,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
+  constructor(private auth: AuthService){}
   name = new FormControl('', [Validators.required, Validators.minLength(3)]);
   email = new FormControl('', [Validators.required, Validators.email]);
   age = new FormControl('', [
@@ -25,8 +30,9 @@ export class RegisterComponent {
     Validators.maxLength(16),
   ]);
   showAlert = false;
-  alertMsg = 'Please wait! Your account is being created.'
-  alertColor = 'blue'
+  alertMsg = 'Please wait! Your account is being created.';
+  alertColor = 'blue';
+  inSubmission = false;
 
 
   registerForm = new FormGroup({
@@ -38,9 +44,23 @@ export class RegisterComponent {
     phoneNumber: this.phoneNumber,
   });
 
-  register(){
+  async register(){
     this.showAlert = true;
-    this.alertMsg = 'Please wait! Your account is being created.'
-    this.alertColor = 'blue'
+    this.alertMsg = 'Please wait! Your account is being created.';
+    this.alertColor = 'blue';
+    this.inSubmission = true;
+    try {
+      await this.auth.createUser(this.registerForm.value)
+    } catch (error) {
+      console.log(error);
+      this.alertMsg = 'An unexpected error occurred. Please try again later';
+      this.alertColor = 'red';
+      this.inSubmission = false;
+      return
+    }
+
+    this.alertMsg = 'Success! Your account has been created.'
+    this.alertColor = 'green'
+
   }
 }

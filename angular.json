@@ -102,5 +102,8 @@
       }
     }
   },
-  "defaultProject": "clipz"
+  "defaultProject": "clipz",
+  "cli": {
+    "analytics": "180758d4-b6e0-48a7-b3e9-7eeb5d0d4624"
+  }
 }

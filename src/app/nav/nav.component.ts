@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AuthService } from '../services/auth.service';
@@ -20,9 +21,6 @@ isAuthenticated = false;
     $event.preventDefault();
     this.modal.toggleModal('auth');
   }
-  async logout($event: Event){
-    $event.preventDefault();
-    await this.afAuth.signOut();
-  }
+
 
 }

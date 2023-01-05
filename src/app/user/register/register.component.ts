@@ -1,9 +1,11 @@
+import { EmailTaken } from './../validators/EmailTaken';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import IUser from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
+import { RegisterValidators } from '../validators/RegisterValidators';
 
 @Component({
   selector: 'app-register',
@@ -11,9 +13,9 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
-  constructor(private auth: AuthService){}
+  constructor(private auth: AuthService, private emailTaken:EmailTaken){}
   name = new FormControl('', [Validators.required, Validators.minLength(3)]);
-  email = new FormControl('', [Validators.required, Validators.email]);
+  email = new FormControl('', [Validators.required, Validators.email], [this.emailTaken.validate]);
   age = new FormControl('', [
     Validators.required,
     Validators.min(18),
@@ -42,7 +44,7 @@ export class RegisterComponent {
     password: this.password,
     confirmPassword: this.confirmPassword,
     phoneNumber: this.phoneNumber,
-  });
+  }, [RegisterValidators.match('password', 'confirmPassword')]);
 
   async register(){
     this.showAlert = true;

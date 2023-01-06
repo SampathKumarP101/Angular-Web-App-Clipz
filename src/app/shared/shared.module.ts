@@ -1,3 +1,4 @@
+import { EventBlokerDirective } from './directives/eventBloker.directive';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ModalComponent } from './modal/modal.component';
@@ -16,7 +17,8 @@ import { AlertComponent } from './alert/alert.component';
     TabsContainerComponent,
     TabComponent,
     InputComponent,
-    AlertComponent
+    AlertComponent,
+    EventBlokerDirective
   ],
   imports: [
     CommonModule,
@@ -28,7 +30,8 @@ import { AlertComponent } from './alert/alert.component';
     TabsContainerComponent,
     TabComponent,
     InputComponent,
-    AlertComponent
+    AlertComponent,
+    EventBlokerDirective,
   ]
 })
 export class SharedModule { }

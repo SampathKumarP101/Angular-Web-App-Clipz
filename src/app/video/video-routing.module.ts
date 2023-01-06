@@ -1,12 +1,11 @@
 import { UploadComponent } from './upload/upload.component';
 import { ManageComponent } from './manage/manage.component';
 import { RouterModule, Routes } from '@angular/router';
-import { NgModule, Component } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { AngularFireAuthGuard, redirectUnauthorizedTo} from '@angular/fire/compat/auth-guard'
 
-const redirectUnauthorizedToHome = () => {
-  redirectUnauthorizedTo('/')
-}
+const redirectUnauthorizedToHome = () => redirectUnauthorizedTo('/')
+
 
 const routes: Routes = [
   {

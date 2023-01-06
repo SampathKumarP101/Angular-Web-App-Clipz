@@ -19,11 +19,13 @@
     "@angular/platform-browser": "~12.0.3",
     "@angular/platform-browser-dynamic": "~12.0.3",
     "@angular/router": "~12.0.3",
+    "@types/uuid": "^9.0.0",
     "install": "^0.13.0",
     "ngx-mask": "^13.1.13",
     "npm": "^9.2.0",
     "rxjs": "^7.8.0",
     "tslib": "^2.1.0",
+    "uuid": "^9.0.0",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {

@@ -1,3 +1,4 @@
+import { EditComponent } from './edit/edit.component';
 import { ManageComponent } from './manage/manage.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UploadComponent } from './upload/upload.component';
@@ -15,7 +16,8 @@ import { CommonModule } from '@angular/common';
   ],
   declarations: [
     ManageComponent,
-    UploadComponent
+    UploadComponent,
+    EditComponent
   ]
 
 })

@@ -14,16 +14,18 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ClipComponent } from './clip/clip.component';
 import { NotFoundComponent } from './notFound/notFound.component';
+import { ClipsListComponent } from './clipsList/clipsList.component';
 
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
     NavComponent,
     HomeComponent,
       AboutComponent,
       ClipComponent,
-      NotFoundComponent
+      NotFoundComponent,
+      ClipsListComponent
    ],
   imports: [
     BrowserModule,

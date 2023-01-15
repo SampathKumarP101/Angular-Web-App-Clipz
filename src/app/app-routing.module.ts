@@ -1,3 +1,4 @@
+import { ClipService } from './services/clip.service';
 import { NotFoundComponent } from './notFound/notFound.component';
 import { ClipComponent } from './clip/clip.component';
 import { AboutComponent } from './about/about.component';
@@ -13,7 +14,14 @@ const routes: Routes = [
     path:'about', component:AboutComponent
   },
   {
-    path:'clip/:id', component:ClipComponent
+    path:'clip/:id', component:ClipComponent, resolve: {
+      clip: ClipService
+    }
+  },
+  {
+    path:'',
+    loadChildren: async () => (await import('./video/video.module')).VideoModule
+
   },
   {
     path:'**', component:NotFoundComponent

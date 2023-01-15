@@ -15,16 +15,19 @@ import { AboutComponent } from './about/about.component';
 import { ClipComponent } from './clip/clip.component';
 import { NotFoundComponent } from './notFound/notFound.component';
 import { ClipsListComponent } from './clipsList/clipsList.component';
+import { FbTimestampPipe } from './pipes/fb-timestamp.pipe';
 
 
 @NgModule({
-  declarations: [	
+  declarations: [
     AppComponent,
     NavComponent,
     HomeComponent,
       AboutComponent,
       ClipComponent,
       NotFoundComponent,
+      ClipsListComponent,
+      FbTimestampPipe,
       ClipsListComponent
    ],
   imports: [
@@ -33,7 +36,6 @@ import { ClipsListComponent } from './clipsList/clipsList.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
-    VideoModule,
     AppRoutingModule,
     AngularFirestoreModule
   ],

@@ -1,22 +1,36 @@
 import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { map, of, switchMap, BehaviorSubject, combineLatest } from 'rxjs';
+import { map, of, switchMap, BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore, AngularFirestoreCollection, DocumentReference, QuerySnapshot } from '@angular/fire/compat/firestore';
 import { Injectable } from '@angular/core';
 import IClip from '../models/clip.model';
+import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ClipService {
+export class ClipService implements Resolve<IClip | null> {
   public clipCollection: AngularFirestoreCollection<IClip>
  pageClips : IClip[] = [];
  pendingReq = false;
 constructor(private db: AngularFirestore,
             private auth: AngularFireAuth,
-            private storage: AngularFireStorage) {
+            private storage: AngularFireStorage,
+            private router: Router) {
   this.clipCollection = db.collection('clips')
  }
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): IClip | Observable<IClip | null> | Promise<IClip | null> | null {
+    return this.clipCollection.doc(route.params.id).get().pipe(
+      map(snapshot => {
+        const data = snapshot.data()
+        if(!data){
+          this.router.navigate(['/'])
+          return null;
+        }
+        return data;
+      })
+    )
+  }
  createClip(data: IClip) : Promise<DocumentReference<IClip>> {
   return this.clipCollection.add(data)
  }

@@ -39,7 +39,5 @@ module.exports = {
     aspectRatio: false,
   },
   plugins: [
-    require('@tailwindcss/aspect-ratio'),
-    // ...
   ],
 }
